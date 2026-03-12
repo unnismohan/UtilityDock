@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator - UtilityDock</title>
+    <meta name="description" content="Generate SHA-256, SHA-512, and SHA-1 hashes instantly using the Web Crypto API. Premium, secure, and client-side hash generation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hash Generator - UtilityDock">
+    <meta property="og:description" content="Generate secure SHA-256 and SHA-512 hashes using Web Crypto API.">
+    <meta property="og:image" content="../logo.png">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <img src="../logo.png" alt="UtilityDock Logo"> UtilityDock
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#tools">Tools</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="ph-moon-bold"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="tool-container">
+            <div class="tool-header">
+                <h2>Hash Generator</h2>
+                <p>Securely generate cryptographic hashes using the standard Web Crypto API.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="input">Input Text</label>
+                <textarea id="input" rows="6" placeholder="Type or paste text to generate a hash..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="algo">Hashing Algorithm</label>
+                <select id="algo" style="font-weight: 600;">
+                    <option value="SHA-256">SHA-256 (Recommended)</option>
+                    <option value="SHA-512">SHA-512</option>
+                    <option value="SHA-1">SHA-1 (Legacy)</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="generate-btn"><i class="ph-hash-bold"></i> Compute Hash</button>
+                <button class="btn btn-secondary" id="clear-btn"><i class="ph-trash-bold"></i> Clear</button>
+            </div>
+
+            <div class="form-group" style="margin-top: 3rem;">
+                <label style="color: var(--primary);">Cryptographic Hash (Hex)</label>
+                <textarea id="output" rows="3" readonly placeholder="Resulting hash will appear here..." style="font-size: 1.1rem; border-color: var(--primary);"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-secondary" id="copy-btn" data-copy="output" style="width: 100%;"><i class="ph-copy-bold"></i> Copy Hash</button>
+            </div>
+            
+            <div id="status" style="margin-top: 1.5rem; text-align: center; font-weight: 500;"></div>
+        </div>
+        <div class="ad-slot ad-slot-banner">
+            <span>Advertisement - Premium Ad Slot</span>
+        </div>
+
+        <section class="tool-info" style="margin-top: 4rem; max-width: 1000px; margin-left: auto; margin-right: auto; text-align: left;">
+            <div class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-lg); background: var(--bg-card); border: 1px solid var(--border);">
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="ph-info-bold" style="color: var(--primary);"></i> How to use this tool
+                </h3>
+                <div style="color: var(--text-muted); line-height: 1.8;">
+                    <p style="margin-bottom: 1rem;">UtilityDock provides high-performance, browser-based utilities designed for modern developers. This tool allows you to process your data securely without ever leaving your machine.</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.75rem;"><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>Privacy First</strong>: All processing happens locally in your browser.</li>
+                        <li style="margin-bottom: 0.75rem;"><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>High Performance</strong>: Blazingly fast execution powered by Vanilla JS.</li>
+                        <li><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>No Backend</strong>: Your data never touches our servers.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 UtilityDock. Designed for developers by <a href="https://github.com">Antigravity</a>.</p>
+        <p style="margin-top: 0.5rem; display: flex; justify-content: center; gap: 1.5rem;">
+            <a href="../privacy.html" style="font-size: 0.85rem; opacity: 0.7;">Privacy Policy</a>
+            <a href="../terms.html" style="font-size: 0.85rem; opacity: 0.7;">Terms of Service</a>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.4; font-size: 0.8rem;">No data is ever stored on our servers. All processing is 100% local.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        const input = document.getElementById('input');
+        const algo = document.getElementById('algo');
+        const output = document.getElementById('output');
+        const status = document.getElementById('status');
+        const generateBtn = document.getElementById('generate-btn');
+        const clearBtn = document.getElementById('clear-btn');
+
+        async function digestMessage(message, algorithm) {
+            const msgUint8 = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest(algorithm, msgUint8);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        generateBtn.addEventListener('click', async () => {
+            const text = input.value.trim();
+            if (!text) return;
+            try {
+                const hash = await digestMessage(text, algo.value);
+                output.value = hash;
+                status.textContent = `${algo.value} compute completed.`;
+                status.style.color = 'var(--success)';
+            } catch (e) {
+                status.textContent = 'Computation Error: ' + e.message;
+                status.style.color = 'var(--error)';
+            }
+        });
+
+        clearBtn.addEventListener('click', () => {
+            input.value = '';
+            output.value = '';
+            status.textContent = '';
+        });
+    </script>
+</body>
+</html>

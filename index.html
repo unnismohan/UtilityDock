@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UtilityDock - The Ultimate Developer Tool Hub</title>
+    <meta name="description" content="UtilityDock is a fast, premium, and secure hub for essential developer tools. All tools run 100% client-side. JSON, Base64, UUID, Regex and more.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://utilitydock.com/">
+    <meta property="og:title" content="UtilityDock - The Ultimate Developer Tool Hub">
+    <meta property="og:description" content="Secure, blazingly fast, and 100% client-side developer toolbox.">
+    <meta property="og:image" content="https://utilitydock.com/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://utilitydock.com/">
+    <meta property="twitter:title" content="UtilityDock - The Ultimate Developer Tool Hub">
+    <meta property="twitter:description" content="Secure, blazingly fast, and 100% client-side developer toolbox.">
+    <meta property="twitter:image" content="https://utilitydock.com/logo.png">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="UtilityDock Logo"> UtilityDock
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#tools">Explore Tools</a></li>
+            <li><a href="https://github.com">GitHub</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle" title="Toggle Surface">
+                <i class="ph-moon-bold"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <img src="logo.png" alt="UtilityDock Premium Logo" class="hero-logo">
+            <h1>The ultimate developer <span style="background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">toolbox.</span></h1>
+            <p>A curated collection of essential utilities for modern developers. Secure, blazingly fast, and run entirely in your browser.</p>
+            
+            <div class="search-container">
+                <span class="search-icon"><i class="ph-magnifying-glass-bold"></i></span>
+                <input type="text" id="tool-search" class="search-bar" placeholder="Search 13+ tools (e.g. JSON, Base64, UUID...)">
+            </div>
+        </section>
+
+        <div class="ad-slot ad-slot-banner">
+            <span>Advertisement - Premium Ad Slot</span>
+        </div>
+
+        <section id="recent-section" style="margin-bottom: 5rem;">
+            <h2 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 2rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+                <i class="ph-clock-bold"></i> Recently Used
+            </h2>
+            <div id="recent-tools-list" class="tool-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+                <!-- Populated via JS -->
+            </div>
+        </section>
+
+        <section id="tools" class="tool-grid">
+            <!-- Ad Card Placeholder -->
+            <div class="tool-card ad-card">
+                <span class="ad-label">AD</span>
+                <div style="text-align: center;">
+                    <i class="ph-megaphone-bold" style="font-size: 2rem; color: var(--text-dim); margin-bottom: 1rem;"></i>
+                    <p style="font-size: 0.85rem;">Google AdSense<br>Display Ad Slot</p>
+                </div>
+            </div>
+
+            <!-- JSON Formatter -->
+            <a href="tools/json-formatter.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-brackets-curly-bold"></i></div>
+                <div class="card-content">
+                    <h3>JSON Formatter</h3>
+                    <p>Beautify, minify, and validate complex JSON structures instantly.</p>
+                </div>
+            </a>
+
+            <!-- Base64 -->
+            <a href="tools/base64-encoder.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-text-aa-bold"></i></div>
+                <div class="card-content">
+                    <h3>Base64 Encoder</h3>
+                    <p>Securely encode and decode strings with full UTF-8 support.</p>
+                </div>
+            </a>
+
+            <!-- UUID -->
+            <a href="tools/uuid-generator.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-fingerprint-bold"></i></div>
+                <div class="card-content">
+                    <h3>UUID Generator</h3>
+                    <p>Generate RFC4122 compliant version 4 unique identifiers.</p>
+                </div>
+            </a>
+
+            <!-- Password -->
+            <a href="tools/password-generator.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-lock-key-bold"></i></div>
+                <div class="card-content">
+                    <h3>Password Gen</h3>
+                    <p>Create high-entropy, cryptographically secure passwords.</p>
+                </div>
+            </a>
+
+            <!-- Timestamp -->
+            <a href="tools/timestamp-converter.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-clock-bold"></i></div>
+                <div class="card-content">
+                    <h3>Epoch Converter</h3>
+                    <p>Convert Unix timestamps to human dates and vice versa.</p>
+                </div>
+            </a>
+
+            <!-- Hash -->
+            <a href="tools/hash-generator.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-hash-bold"></i></div>
+                <div class="card-content">
+                    <h3>Hash Generator</h3>
+                    <p>Generate SHA-256 and SHA-512 hashes using Web Crypto API.</p>
+                </div>
+            </a>
+
+            <!-- Regex -->
+            <a href="tools/regex-tester.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-code-bold"></i></div>
+                <div class="card-content">
+                    <h3>Regex Tester</h3>
+                    <p>Test and debug regular expressions with live highlighting.</p>
+                </div>
+            </a>
+
+            <!-- URL -->
+            <a href="tools/url-encoder.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-link-bold"></i></div>
+                <div class="card-content">
+                    <h3>URL Encoder</h3>
+                    <p>Safe encoding and decoding for URI components.</p>
+                </div>
+            </a>
+
+            <!-- JSON to YAML -->
+            <a href="tools/json-to-yaml.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-files-bold"></i></div>
+                <div class="card-content">
+                    <h3>JSON → YAML</h3>
+                    <p>Convert JSON objects to clean, readable YAML format.</p>
+                </div>
+            </a>
+
+            <!-- HTML Formatter -->
+            <a href="tools/html-formatter.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-code-block-bold"></i></div>
+                <div class="card-content">
+                    <h3>HTML Formatter</h3>
+                    <p>Clean up messy HTML code with proper indentation.</p>
+                </div>
+            </a>
+
+            <!-- Docker -->
+            <a href="tools/docker-compose-validator.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-cube-bold"></i></div>
+                <div class="card-content">
+                    <h3>Docker Validator</h3>
+                    <p>Check your Compose YAML for syntax and structural errors.</p>
+                </div>
+            </a>
+
+            <!-- Kubernetes -->
+            <a href="tools/kubernetes-yaml-generator.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-cloud-bold"></i></div>
+                <div class="card-content">
+                    <h3>K8s Generator</h3>
+                    <p>Generate production-ready Kubernetes resource manifests.</p>
+                </div>
+            </a>
+
+            <!-- Helm -->
+            <a href="tools/helm-values-formatter.html" class="tool-card">
+                <div class="tool-icon"><i class="ph-anchor-bold"></i></div>
+                <div class="card-content">
+                    <h3>Helm Formatter</h3>
+                    <p>Format and validate your Chart values.yaml files.</p>
+                </div>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 UtilityDock. Designed for developers by <a href="https://github.com">Antigravity</a>.</p>
+        <p style="margin-top: 0.5rem; display: flex; justify-content: center; gap: 1.5rem;">
+            <a href="privacy.html" style="font-size: 0.85rem; opacity: 0.7;">Privacy Policy</a>
+            <a href="terms.html" style="font-size: 0.85rem; opacity: 0.7;">Terms of Service</a>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.4; font-size: 0.8rem;">No data is ever stored on our servers. All processing is 100% local.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
+</body>
+</html>

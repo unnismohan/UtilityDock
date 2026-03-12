@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Tester - UtilityDock</title>
+    <meta name="description" content="Premium online Regex tester with live highlighting and match explanation. Debug your regular expressions with ease using our modern, secure tool.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Regex Tester - UtilityDock">
+    <meta property="og:description" content="Test and debug regular expressions with live highlighting.">
+    <meta property="og:image" content="../logo.png">
+    <style>
+        #highlighted-text {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            min-height: 200px;
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .match {
+            background-color: rgba(99, 102, 241, 0.3);
+            border-radius: 4px;
+            box-shadow: 0 0 0 1px var(--primary);
+            color: white;
+        }
+        .regex-input-group {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            background: var(--bg-main);
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+        }
+        .regex-input-group span {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+        }
+        .regex-input-group input {
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            padding: 0.5rem;
+        }
+        .regex-input-group input:focus {
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <img src="../logo.png" alt="UtilityDock Logo"> UtilityDock
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#tools">Tools</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="ph-moon-bold"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="tool-container">
+            <div class="tool-header">
+                <h2>Regex Tester</h2>
+                <p>Build, test, and debug regular expressions with live visual feedback.</p>
+            </div>
+
+            <div class="form-group">
+                <label>Expression & Flags</label>
+                <div class="regex-input-group">
+                    <span>/</span>
+                    <input type="text" id="regex-input" placeholder="[a-zA-Z0-9]+" style="flex: 1; font-weight: 600;">
+                    <span>/</span>
+                    <input type="text" id="flags-input" placeholder="gim" style="width: 80px; color: var(--accent); font-weight: 700;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="text-input">Test String</label>
+                <textarea id="text-input" rows="6" placeholder="Paste sample text here to test your expression..."></textarea>
+            </div>
+
+            <div class="form-group" style="margin-top: 3rem;">
+                <label style="color: var(--primary);">Live Highlighted Matches</label>
+                <div id="highlighted-text"></div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-secondary" id="clear-btn" style="width: 100%;"><i class="ph-trash-bold"></i> Clear All</button>
+            </div>
+            
+            <div id="status" style="margin-top: 1.5rem; text-align: center; font-weight: 500;"></div>
+        </div>
+        <div class="ad-slot ad-slot-banner">
+            <span>Advertisement - Premium Ad Slot</span>
+        </div>
+
+        <section class="tool-info" style="margin-top: 4rem; max-width: 1000px; margin-left: auto; margin-right: auto; text-align: left;">
+            <div class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-lg); background: var(--bg-card); border: 1px solid var(--border);">
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="ph-info-bold" style="color: var(--primary);"></i> How to use this tool
+                </h3>
+                <div style="color: var(--text-muted); line-height: 1.8;">
+                    <p style="margin-bottom: 1rem;">UtilityDock provides high-performance, browser-based utilities designed for modern developers. This tool allows you to process your data securely without ever leaving your machine.</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.75rem;"><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>Privacy First</strong>: All processing happens locally in your browser.</li>
+                        <li style="margin-bottom: 0.75rem;"><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>High Performance</strong>: Blazingly fast execution powered by Vanilla JS.</li>
+                        <li><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>No Backend</strong>: Your data never touches our servers.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 UtilityDock. Designed for developers by <a href="https://github.com">Antigravity</a>.</p>
+        <p style="margin-top: 0.5rem; display: flex; justify-content: center; gap: 1.5rem;">
+            <a href="../privacy.html" style="font-size: 0.85rem; opacity: 0.7;">Privacy Policy</a>
+            <a href="../terms.html" style="font-size: 0.85rem; opacity: 0.7;">Terms of Service</a>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.4; font-size: 0.8rem;">No data is ever stored on our servers. All processing is 100% local.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        const regexInput = document.getElementById('regex-input');
+        const flagsInput = document.getElementById('flags-input');
+        const textInput = document.getElementById('text-input');
+        const highlightedText = document.getElementById('highlighted-text');
+        const status = document.getElementById('status');
+        const clearBtn = document.getElementById('clear-btn');
+
+        function updateRegex() {
+            const pattern = regexInput.value;
+            const flags = flagsInput.value;
+            const text = textInput.value;
+
+            if (!pattern) {
+                highlightedText.textContent = text;
+                status.textContent = '';
+                return;
+            }
+
+            try {
+                const regex = new RegExp(pattern, flags);
+                let html = '';
+                let lastIndex = 0;
+                let matchCount = 0;
+                const escape = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+                if (flags.includes('g')) {
+                    let m;
+                    while ((m = regex.exec(text)) !== null) {
+                        if (m.index === regex.lastIndex) regex.lastIndex++;
+                        html += escape(text.substring(lastIndex, m.index));
+                        html += `<span class="match">${escape(m[0])}</span>`;
+                        lastIndex = regex.lastIndex;
+                        matchCount++;
+                    }
+                } else {
+                    const m = text.match(regex);
+                    if (m) {
+                        html += escape(text.substring(0, m.index));
+                        html += `<span class="match">${escape(m[0])}</span>`;
+                        lastIndex = m.index + m[0].length;
+                        matchCount = 1;
+                    }
+                }
+
+                html += escape(text.substring(lastIndex));
+                highlightedText.innerHTML = html || escape(text);
+                status.textContent = `Pattern matched ${matchCount} time(s).`;
+                status.style.color = 'var(--success)';
+            } catch (e) {
+                highlightedText.textContent = text;
+                status.textContent = 'Invalid RegExp: ' + e.message;
+                status.style.color = 'var(--error)';
+            }
+        }
+
+        regexInput.addEventListener('input', updateRegex);
+        flagsInput.addEventListener('input', updateRegex);
+        textInput.addEventListener('input', updateRegex);
+        clearBtn.addEventListener('click', () => {
+            regexInput.value = ''; flagsInput.value = ''; textInput.value = '';
+            highlightedText.innerHTML = ''; status.textContent = '';
+        });
+    </script>
+</body>
+</html>

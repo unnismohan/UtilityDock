@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes YAML Generator - UtilityDock</title>
+    <meta name="description" content="Premium Kubernetes YAML generator. Quickly create production-ready manifests for Deployments, Services, and more with our modern tool.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kubernetes YAML Generator - UtilityDock">
+    <meta property="og:description" content="Generate production-ready Kubernetes resource manifests instantly.">
+    <meta property="og:image" content="../logo.png">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <img src="../logo.png" alt="UtilityDock Logo"> UtilityDock
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#tools">Tools</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="ph-moon-bold"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="tool-container">
+            <div class="tool-header">
+                <h2>K8s Generator</h2>
+                <p>Bootstrap your Kubernetes resources with clean, templated YAML manifests.</p>
+            </div>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div>
+                    <label>Resource Kind</label>
+                    <select id="resource-type" style="font-weight: 600;">
+                        <option value="deployment">Deployment</option>
+                        <option value="service">Service</option>
+                        <option value="configmap">ConfigMap</option>
+                        <option value="ingress">Ingress</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Resource Name</label>
+                    <input type="text" id="res-name" value="web-app">
+                </div>
+            </div>
+
+            <div class="form-group" id="extra-fields">
+                <label>Container Image</label>
+                <input type="text" id="image" value="nginx:alpine">
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="generate-btn" style="width: 100%;"><i class="ph-plus-bold"></i> Generate Blueprint</button>
+            </div>
+
+            <div class="form-group" style="margin-top: 3rem;">
+                <label style="color: var(--primary);">YAML Manifest</label>
+                <textarea id="output" rows="12" readonly placeholder="Manifest will appear here..." style="border-color: var(--primary);"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-secondary" id="copy-btn" data-copy="output"><i class="ph-copy-bold"></i> Copy to Clipboard</button>
+                <button class="btn btn-secondary" id="download-btn"><i class="ph-download-simple-bold"></i> Download</button>
+            </div>
+        </div>
+        <div class="ad-slot ad-slot-banner">
+            <span>Advertisement - Premium Ad Slot</span>
+        </div>
+
+        <section class="tool-info" style="margin-top: 4rem; max-width: 1000px; margin-left: auto; margin-right: auto; text-align: left;">
+            <div class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-lg); background: var(--bg-card); border: 1px solid var(--border);">
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="ph-info-bold" style="color: var(--primary);"></i> How to use this tool
+                </h3>
+                <div style="color: var(--text-muted); line-height: 1.8;">
+                    <p style="margin-bottom: 1rem;">UtilityDock provides high-performance, browser-based utilities designed for modern developers. This tool allows you to process your data securely without ever leaving your machine.</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.75rem;"><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>Privacy First</strong>: All processing happens locally in your browser.</li>
+                        <li style="margin-bottom: 0.75rem;"><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>High Performance</strong>: Blazingly fast execution powered by Vanilla JS.</li>
+                        <li><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>No Backend</strong>: Your data never touches our servers.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 UtilityDock. Designed for developers by <a href="https://github.com">Antigravity</a>.</p>
+        <p style="margin-top: 0.5rem; display: flex; justify-content: center; gap: 1.5rem;">
+            <a href="../privacy.html" style="font-size: 0.85rem; opacity: 0.7;">Privacy Policy</a>
+            <a href="../terms.html" style="font-size: 0.85rem; opacity: 0.7;">Terms of Service</a>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.4; font-size: 0.8rem;">No data is ever stored on our servers. All processing is 100% local.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        const resType = document.getElementById('resource-type');
+        const resName = document.getElementById('res-name');
+        const image = document.getElementById('image');
+        const output = document.getElementById('output');
+        const generateBtn = document.getElementById('generate-btn');
+        const downloadBtn = document.getElementById('download-btn');
+
+        const templates = {
+            deployment: (n, i) => `apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${n}
+  labels:
+    app: ${n}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ${n}
+  template:
+    metadata:
+      labels:
+        app: ${n}
+    spec:
+      containers:
+      - name: main
+        image: ${i}
+        ports:
+        - containerPort: 80`,
+            service: (n) => `apiVersion: v1
+kind: Service
+metadata:
+  name: ${n}
+spec:
+  type: ClusterIP
+  selector:
+    app: ${n}
+  ports:
+  - port: 80
+    targetPort: 80`,
+            configmap: (n) => `apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${n}
+data:
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "info"`,
+            ingress: (n) => `apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ${n}
+spec:
+  rules:
+  - host: ${n}.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ${n}
+            port:
+              number: 80`
+        };
+
+        resType.addEventListener('change', () => {
+            const extra = document.getElementById('extra-fields');
+            extra.style.display = resType.value === 'deployment' ? 'block' : 'none';
+        });
+
+        generateBtn.addEventListener('click', () => {
+            output.value = templates[resType.value](resName.value || 'k8s-resource', image.value || 'nginx:alpine');
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (!output.value) return;
+            downloadFile(output.value, `${resName.value}.yaml`, 'text/yaml');
+        });
+
+        window.addEventListener('load', () => generateBtn.click());
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://utilitydock.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://utilitydock.com/tools/json-formatter.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/base64-encoder.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/uuid-generator.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/password-generator.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/timestamp-converter.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/hash-generator.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/regex-tester.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/url-encoder.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/json-to-yaml.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/html-formatter.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/docker-compose-validator.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/kubernetes-yaml-generator.html</loc><priority>0.8</priority></url>
+  <url><loc>https://utilitydock.com/tools/helm-values-formatter.html</loc><priority>0.8</priority></url>
+</urlset>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID Generator - UtilityDock</title>
+    <meta name="description" content="Generate secure, random RFC4122 compliant version 4 UUIDs instantly with our premium generator tool.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="UUID Generator - UtilityDock">
+    <meta property="og:description" content="Generate RFC4122 compliant version 4 unique identifiers.">
+    <meta property="og:image" content="../logo.png">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <img src="../logo.png" alt="UtilityDock Logo"> UtilityDock
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#tools">Tools</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="ph-moon-bold"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="tool-container">
+            <div class="tool-header">
+                <h2>UUID v4 Generator</h2>
+                <p>Quickly generate high-entropy, random version 4 UUIDs for your projects.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="count">Quantity to Generate</label>
+                <input type="number" id="count" value="5" min="1" max="500">
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="generate-btn"><i class="ph-plus-bold"></i> Generate UUIDs</button>
+                <button class="btn btn-secondary" id="clear-btn"><i class="ph-trash-bold"></i> Clear</button>
+            </div>
+
+            <div class="form-group" style="margin-top: 2.5rem;">
+                <label for="output">Generated Identifiers</label>
+                <textarea id="output" rows="12" readonly placeholder="UUIDs will appear here..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-secondary" id="copy-btn" data-copy="output"><i class="ph-copy-bold"></i> Copy All</button>
+                <button class="btn btn-secondary" id="download-btn"><i class="ph-download-simple-bold"></i> Download .txt</button>
+            </div>
+            
+            <div id="status" style="margin-top: 1.5rem; font-weight: 500; text-align: center;"></div>
+        </div>
+        <div class="ad-slot ad-slot-banner">
+            <span>Advertisement - Premium Ad Slot</span>
+        </div>
+
+        <section class="tool-info" style="margin-top: 4rem; max-width: 1000px; margin-left: auto; margin-right: auto; text-align: left;">
+            <div class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-lg); background: var(--bg-card); border: 1px solid var(--border);">
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="ph-info-bold" style="color: var(--primary);"></i> How to use this tool
+                </h3>
+                <div style="color: var(--text-muted); line-height: 1.8;">
+                    <p style="margin-bottom: 1rem;">UtilityDock provides high-performance, browser-based utilities designed for modern developers. This tool allows you to process your data securely without ever leaving your machine.</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.75rem;"><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>Privacy First</strong>: All processing happens locally in your browser.</li>
+                        <li style="margin-bottom: 0.75rem;"><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>High Performance</strong>: Blazingly fast execution powered by Vanilla JS.</li>
+                        <li><i class="ph-check-circle-bold" style="color: var(--success);"></i> <strong>No Backend</strong>: Your data never touches our servers.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 UtilityDock. Designed for developers by <a href="https://github.com">Antigravity</a>.</p>
+        <p style="margin-top: 0.5rem; display: flex; justify-content: center; gap: 1.5rem;">
+            <a href="../privacy.html" style="font-size: 0.85rem; opacity: 0.7;">Privacy Policy</a>
+            <a href="../terms.html" style="font-size: 0.85rem; opacity: 0.7;">Terms of Service</a>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.4; font-size: 0.8rem;">No data is ever stored on our servers. All processing is 100% local.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        const countInput = document.getElementById('count');
+        const output = document.getElementById('output');
+        const status = document.getElementById('status');
+        const generateBtn = document.getElementById('generate-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const downloadBtn = document.getElementById('download-btn');
+
+        function generateUUID() {
+            return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            );
+        }
+
+        generateBtn.addEventListener('click', () => {
+            const count = parseInt(countInput.value) || 1;
+            const uuids = [];
+            for (let i = 0; i < count; i++) {
+                uuids.push(generateUUID());
+            }
+            output.value = uuids.join('\n');
+            status.textContent = `Generated ${count} unique identifier(s).`;
+            status.style.color = 'var(--success)';
+        });
+
+        clearBtn.addEventListener('click', () => {
+            output.value = '';
+            status.textContent = '';
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (!output.value) return;
+            downloadFile(output.value, 'uuids.txt', 'text/plain');
+        });
+        
+        window.addEventListener('load', () => generateBtn.click());
+    </script>
+</body>
+</html>
